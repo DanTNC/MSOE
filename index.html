@@ -17,26 +17,7 @@
 
 <body>
   
-  <!--<div id="modaldiv" class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Profile Picture
-  </div>
-  <div class="content">
-    <div class="ui medium image">
-      <img src="/images/avatar/large/chris.jpg">
-    </div>
-  </div>
-  <div class="actions">
-    <div class="ui black button">
-      Nope
-    </div>
-    <div class="ui positive right labeled icon button">
-      Yep, that's me
-      <i class="checkmark icon"></i>
-    </div>
-  </div>
-</div>-->
+ 
   
 <div id="modaldiv1" class="ui modal start">
   <h1 class="ui center aligned huge header"><img class="ui large circular image" src="img/logo.png"/>
@@ -89,20 +70,21 @@
     
   
   
+<div class="ui top thin inverted menu" id="topbar">
+	<a class="item" id="infohome">Score Info</a>
+	<a class="item" id="mannualgo">Mannual</a>
+	<a class="item">Save</a>
+	<a class="item">Play</a>
+	<a class="item">Share</a>
+	<div class="right menu">
+	<a class="item" onclick="edit_mode()">編輯</a>
+		<a class="item" onclick="preview_mode()">預覽</a></div>
  
-<div class="logo"><img src="http://i.imgur.com/AXlHDR1.png" class="logo" width=300px></div>
-<div class="modal" id="infohome"><button class="ui button">Score Info</button></div>
-<div class="mode">
-  <button onclick="edit_mode()">編輯</button>
-  <button onclick="preview_mode()">預覽</button>
 </div>
 
 
 <!--row top left-->
-<div class="ui grid">
-<div class="four wide column">
-<div class="one column row">Tempo</div>
-<input class="one column row input_tempo" onchange="chgtmp(this)"/>
+
 <div class="one column row">Notes</div>
 <div class="one column row">
 <button class="circular ui button column"><img src="img/notes-01.png" alt="" class="extra_note ui circular image" id="" /></button>
@@ -146,21 +128,19 @@
 <button class="circular ui button column"><img src="img/note-25.png" alt="" class="extra_note ui circular image" id="" /></button>
 <button class="circular ui button column"><img src="img/note-26.png" alt="" class="extra_note ui circular image" id="" /></button>
 </div>
-</div>
+<div class="one column row meter">Meter</div>
+<div class="ui input">
+<input class="one column row input_tempo" onchange="chgtmp(this)"  placeholder="4/4"/>
+	</div></div>
  
 <!--row top boo -->
 <div class="ten wide column sheet" id="sheet">
 <div class="boo" id="boo"></div>
 </div>
+ 
 
-
-<div class="two wide column"> 
-<button class="ui button" id="mannualgo">test</button>
+<div class="two wide column">	
 <div class="ui right sidebar inverted vertical menu" id="sidebar" >
-	<div class="ui animated inverted black left floated button" id="mannualback">
-		<div class="visible content">back</div></div>
-	
-	
 <div class="item">
 <h2 class="ui header" style="color:white;">游標指令</h2>
 <p class="mannual">
@@ -195,16 +175,15 @@ A :將被分開的音符再次連起來<br>
 shift+F (複製模式下) :以目前位置為複製結束點，記錄複製的東西並結束複製模式<br> 
 F (複製模式下) :取消複製<br> 
 G:貼上<br>
-<br> </p></div>
+	<br> </p></div></div>
 
   
  
 </div>
-</div>
 
 
   
-<!--row bottom-->
+<!--row bottom--
 <div class="row bottom">
 <div class="col-sm-12 col-md-12 col-lg-12 edit_line"> 
 <div class="col-sm-7 col-md-7 col-lg-7 keyboard">
@@ -242,7 +221,7 @@ G:貼上<br>
 <input class="site" type="text" id="url">
 </div>
 </div>
-</div>
+</div>-->
 
 
 <!-- modal page 
@@ -337,7 +316,17 @@ G:貼上<br>
 	    	      .modal('setting', 'closable', false);
     });
 </script>
-  
+  <script type="text/javascript">
+	 $(document).ready(function(){
+	$('#topbar')
+  .sidebar('setting', 'transition', 'push')
+  .sidebar('show' {})
+  .sidebar('setting', 'dimPage', false)
+  .sidebar('setting', 'closable', false); 
+		  });
+		 </script>
+	
+	
   <script type="text/javascript">
   $('#cancel').click(function(){
     
