@@ -82,6 +82,15 @@
  
 </div>
 
+<div class="ui grid">
+<div class="four wide column">	
+<div class="rows">	
+	<div class="logo"><img src="img/logo.png" class="logo" width=300px></div></div>
+
+<div class="rows page">	
+<div id="pg" class="ui orange circular button">第1頁</div>
+	<div id="showpages"><button class="pagebutton" id="p1" onclick="">1</button></div></div>
+
 
 <!--row top left-->
 
@@ -138,7 +147,28 @@
 <div class="boo" id="boo"></div>
 </div>
  
+<div class="two wide column">	
 
+<div class="ui sticky" style="width: 272px !important; height: 262.531px !important; left: 43px; padding-right: 5px !important;">
+<h3 class="ui header">Keyboard</h3>
+      <div class="keyboard">
+<button id="C" class="white" onclick="btn(this)">Z</button>
+<button id="CS" class="black"></button>
+<button id="D" class="white" onclick="btn(this)">X</button>
+<button id="DS"  class="black"></button>
+<button id="E" class="white" onclick="btn(this)">C</button>
+<button id="F" class="white" onclick="btn(this)">V</button>
+<button id="FS"  class="black"></button>
+<button id="G" class="white" onclick="btn(this)">B</button>
+<button id="GS"  class="black"></button>
+<button id="A" class="white" onclick="btn(this)">N</button>
+<button id="AS"  class="black"></button>
+<button id="B" class="white" onclick="btn(this)">M</button>
+<button id="CC" class="white" onclick="">,</button>
+	</div>	   
+  </div>
+	</div> 
+	
 <div class="two wide column">	
 <div class="ui right sidebar inverted vertical menu" id="sidebar" >
 <div class="item">
@@ -182,7 +212,7 @@ G:貼上<br>
 </div>
 
 
-  
+ </div>
 <!--row bottom--
 <div class="row bottom">
 <div class="col-sm-12 col-md-12 col-lg-12 edit_line"> 
@@ -315,15 +345,7 @@ G:貼上<br>
 	    	     .modal({blurring: true})
 	    	      .modal('setting', 'closable', false);
     });
-</script>
-  <script type="text/javascript">
-	 $(document).ready(function(){
-	$('#topbar')
-  .sidebar('setting', 'transition', 'push')
-  .sidebar('show' {})
-  .sidebar('setting', 'dimPage', false)
-  .sidebar('setting', 'closable', false); 
-		  });
+
 		 </script>
 	
 	

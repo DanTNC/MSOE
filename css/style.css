@@ -6,6 +6,12 @@
   
 }
 
+.sticky
+{
+padding: 5px;
+ margin: 5px;
+}
+
 html, body {
 padding: 0px;
 margin: 0px;
@@ -70,8 +76,7 @@ font color:white;
   font-size: 12px;
 }
 .edit_line {  
-  position: fixed;
-  bottom: 0%;
+  
   height: 30%;
   border-top: solid 1px #222222;
   background-color:#F2EBDB;
