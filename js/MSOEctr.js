@@ -779,7 +779,7 @@ var checkinput = () => {//if input tags are focused, turn off key events
   	else
     	return false;
 };
-
+/*
 var moveright = () => {
 	var x0 = $('#quarter2').position().left;
 	var x1 = $('#sixty-fourth').position().left;
@@ -821,77 +821,93 @@ var moveleft = () => {
   	$('#whole').css('left', x6);
   	$('#breve').css('left', x7);
 }
-
+*/
 var key = () => { // only keypress can tell if "shift" is pressed at the same time
   	if(checkinput()) return;
   	if(!Edit) return;
+	var event_ok = false;
 	switch(event.keyCode){
 		case 44://"<"
 			MSOE.ChgDstate(0);
-        	moveright();
+        	//moveright();
+			event_ok = true;
 			break;
 		case 46://">"
 			MSOE.ChgDstate(1);
-        	moveleft();
+        	//moveleft();
+			event_ok = true;
 			break;
 		case 60://"shift+>"
 			MSOE.ChgDstate(2);
+			event_ok = true;
 			break;
 		case 62://"shift+<"
 			MSOE.ChgDstate(3);
+			event_ok = true;
 			break;
 	// ----------Change Dstate-----------
     	case 63://"shift+?" for chord mode
     	case 47://"?"
       		document.getElementById("octave").innerHTML=(MSOE.ChgTstate(0)+3);
+			event_ok = true;
       		break;
     	case 34://"shift+'" for chord mode
     	case 39://"'" 
       		document.getElementById("octave").innerHTML=(MSOE.ChgTstate(1)+3);
+			event_ok = true;
       		break;
 	// ----------Change Tstate-----------
     	case 122://"Z"
       		MSOE.outinsert("C",1,0,1);
 			MSOE.miditone("C",0);
       		highlight("#C");
+			event_ok = true;
       		break;
     	case 120://"X"
       		MSOE.outinsert("D",1,0,1);
 			MSOE.miditone("D",0);
       		highlight("#D");
+			event_ok = true;
       		break;
     	case 99://"C"
       		MSOE.outinsert("E",1,0,1);
 			MSOE.miditone("E",0);
       		highlight("#E");
+			event_ok = true;
       		break;
     	case 118://"V"
       		MSOE.outinsert("F",1,0,1);
 			MSOE.miditone("F",0);
       		highlight("#F");
+			event_ok = true;
       		break;
     	case 98://"B"
       		MSOE.outinsert("G",1,0,1);
 			MSOE.miditone("G",0);
       		highlight("#G");
+			event_ok = true;
       		break;
     	case 110://"N"
       		MSOE.outinsert("A",1,0,1);
 			MSOE.miditone("A",0);
       		highlight("#A");
+			event_ok = true;
       		break;
     	case 109://"M"
       		MSOE.outinsert("B",1,0,1);
 			MSOE.miditone("B",0);
       		highlight("#B");
+			event_ok = true;
       		break;
   // ----------Insert Note------------
 		case 115://"S"
       		MSOE.separate();
+			event_ok = true;
       		break;
   // ----------Seperate Notes---------
     	case 97://"A"
       		MSOE.assemble();
+			event_ok = true;
       		break;
   // ----------Assemble Notes---------
     	case 100://"D"
@@ -900,148 +916,193 @@ var key = () => { // only keypress can tell if "shift" is pressed at the same ti
       		}else{
         		alert("Pause with duration of 2 is illegal.");
       		}
+			event_ok = true;
       		break;
   // ----------Insert Pause-----------
     	case 92://"|"
       		MSOE.outinsert("|",0,0,0);
+			event_ok = true;
       		break;
   // ----------Insert Bar-------------
     	case 93://"]" for #
 			MSOE.accidental(0);
+			event_ok = true;
       		break;
     	case 91://"[" for b
       		MSOE.accidental(1);
+			event_ok = true;
       		break;
 		case 125://"shift+[" for #(chord mode)
 			MSOE.accidental(2);
+			event_ok = true;
 			break;
 		case 123://"shift+]" for b(chord mode)
 			MSOE.accidental(3);
+			event_ok = true;
 			break;
   // ----------Accidental-------------
     	case 90://"shift+Z"
 			MSOE.outinsertch("C");
 			MSOE.miditone("C",0);
+			event_ok = true;
       		break;
     	case 88://"shift+X"
       		MSOE.outinsertch("D");
 			MSOE.miditone("D",0);
+			event_ok = true;
       		break;
     	case 67://"shift+C"
       		MSOE.outinsertch("E");
 			MSOE.miditone("E",0);
+			event_ok = true;
       		break;
     	case 86://"shift+V"
       		MSOE.outinsertch("F");
 			MSOE.miditone("F",0);
+			event_ok = true;
       		break;
     	case 66://"shift+B"
       		MSOE.outinsertch("G");
 			MSOE.miditone("G",0);
+			event_ok = true;
       		break;
     	case 78://"shift+N"
       		MSOE.outinsertch("A");
 			MSOE.miditone("A",0);
+			event_ok = true;
       		break;
     	case 77://"shift+M"
       		MSOE.outinsertch("B");
 			MSOE.miditone("B",0);
+			event_ok = true;
       		break;
   // ----------Chord Mode-------------
     	case 13://"enter"
 			MSOE.newline();
+			event_ok = true;
       		break;
   // ----------New Line---------------
 		case 70://"shift+f" turn on and off copy mode
 			MSOE.copymode();
+			event_ok = true;
       		break;
 		case 102://"f" cancel copy mode(when it's on)
 			MSOE.copycancel();
+			event_ok = true;
 			break;
 		case 103://"g" paste
 			MSOE.paste();
+			event_ok = true;
 			break;
   // ----------Copy Mode--------------
 		case 113://"q" toggle clef setting mode
 			MSOE.ClfMdTgl();
+			event_ok = true;
 			break;
 		case 49://"1" set clef to treble or jump to 1st voice
 			MSOE.ClfOrVic(49);
+			event_ok = true;
 			break;
 		case 50://"2" set clef to alto or jump to 2nd voice
 			MSOE.ClfOrVic(50);
+			event_ok = true;
 			break;
 		case 51://"3" set clef to tenor or jump to 3rd voice
 			MSOE.ClfOrVic(51);
+			event_ok = true;
 			break;
 		case 52://"4" set clef to bass or jump to 4th voice
 			MSOE.ClfOrVic(52);
+			event_ok = true;
 			break;
 		case 53://"5" jump to 5th voice
 			MSOE.ClfOrVic(53);
+			event_ok = true;
 			break;
 		case 54://"6" jump to 6th voice
 			MSOE.ClfOrVic(54);
+			event_ok = true;
 			break;
 		case 119://"w" add a voice
 			MSOE.AddVoice();
+			event_ok = true;
 			break;
 		case 87://"shift+w" delete current voice
 			MSOE.DelVoice();
+			event_ok = true;
 			break;
 		case 114://"r" swap two voices (mark current voice to be one of them)
 			MSOE.VicChgA();
+			event_ok = true;
 			break;
 		case 82://"shift+r" swap two voices (swap current voice and the one marked before)
 			MSOE.VicChgB();
+			event_ok = true;
 			break;
   // ----------Clef and Voice----------
+  /*
 		case 116://"t" use browser printer to print the sheet (can save as pdf)
 			MSOE.printabc();
+			event_ok = true;
 			break;
+  */
   // ----------Print (as pdf)----------
 		case 45://"-" tie two notes
 			MSOE.tie();
+			event_ok = true;
 			break;
 		case 61://"=" untie
 			MSOE.untie();
+			event_ok = true;
 			break;
   // ----------Tie and Untie-----------
     	default:
 	}
 	console.log(event.keyCode);
-	MSOE.print();
+	if(event_ok == true){
+		MSOE.print();
+	}
 };
 
 var move = () => { // some keys can't be detected in keypress
 	if(checkinput()) return;//if inpus tags are focus, turn off key events
   	if(!Edit) return;
+	var event_ok = false;
 	//not using switch for speed(avoid looking up table)
 	if(event.keyCode==37){//"left"
 		MSOE.outmove(0);
+		event_ok = true;
 	}
 	if(event.keyCode==39){//"right"
 		MSOE.outmove(1);
+		event_ok = true;
 	}
   	if(event.keyCode==38){//"up"
     	MSOE.outmove(2);
+		event_ok = true;
   	}
   	if(event.keyCode==40){//"down"
     	MSOE.outmove(3);
+		event_ok = true;
   	}
 	if(event.keyCode==36){//"home"
     	MSOE.outmove2(4);
+		event_ok = true;
   	}
 	if(event.keyCode==35){//"end"
     	MSOE.outmove2(5);
+		event_ok = true;
   	}
   	if(event.keyCode==8){//"backspace"
 		MSOE.del();
+		event_ok = true;
   	}
   	if(event.keyCode==16){//"shift" for chord mode on
     	MSOE.chmodeon();
   	}
-	MSOE.print();
+	if(event_ok == true){
+		MSOE.print();
+	}
 };
 
 var chord = () => {//keyup event for chord mode
@@ -1092,7 +1153,13 @@ $(document).ready(function(){
 	});
 });
 
-$("#save").click(function(e){MSOE.save(e)});
+$("#save").click(function(e){MSOE.save(e);});
+$("#play").click(function(){});
+$("#share").click(function(){
+	if(!Edit){
+		MSOE.printabc();
+	}
+});
 
 $(document).ready(function(){
 	MSOE.urlload();
@@ -1101,4 +1168,5 @@ $(document).ready(function(){
  	document.onkeydown=move;
   document.onkeyup=chord;
   $("#showpages").hide();
+  $("#share").hide();
 });
