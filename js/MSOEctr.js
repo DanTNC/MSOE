@@ -1168,5 +1168,4 @@ $(document).ready(function(){
  	document.onkeydown=move;
   document.onkeyup=chord;
   $("#showpages").hide();
-  $("#share").hide();
 });
