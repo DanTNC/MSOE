@@ -11,14 +11,16 @@ function msoe () {
 	var maxoffset=0;//the maximum of offset
 	var strs=[];//voices
 	var clef=[];//clef of voices
-  var page=[];
-	clef[0]="treble";//default value
+  	var page=[];
+
+	var actions=[];//record the order of actions for the "undo" command
+
+		clef[0]="treble";//default value
 	this.AddVoice = () => {
 		var temindex=clef.length;
 		clef[temindex]="treble";
 		strs[temindex]="$";
-		SaveNLoad(temindex);
-		
+		SaveNLoad(temindex);		
 	};
 	this.DelVoice = () => {
 		if(clef.length==1) return;
@@ -429,7 +431,7 @@ function msoe () {
 				if(!url.localeCompare(rcvUrl))
 				{
 					console.log("process url error");
-					window.location.replace("http://luffy.ee.ncku.edu.tw/~lin11220206/MSOE/");
+					window.location.replace("http://luffy.ee.ncku.edu.tw/~fad11204/git/MSOE/");
 				}
 			}
 			document.getElementById("url").setAttribute('value', location.href.split("?")[0]+"?"+rcvUrl);  
@@ -475,7 +477,7 @@ function msoe () {
 					MSOE.tmpstr=rcvData.split("!")[1];
 					MSOE.abcstr=rcvData.split("!")[2];
 					if(rcvData.trim().length < 4)
-						window.location.replace("http://luffy.ee.ncku.edu.tw/~lin11220206/MSOE/");
+						window.location.replace("http://luffy.ee.ncku.edu.tw/~fad11204/git/MSOE/");
 					else
 					{
 						$(function () { $('#myModal').modal({
@@ -490,7 +492,7 @@ function msoe () {
 				});
 			}
 			else
-				window.location.replace("http://luffy.ee.ncku.edu.tw/~lin11220206/MSOE/");
+				window.location.replace("http://luffy.ee.ncku.edu.tw/~fad11204/git/MSOE/");
 		}
 		else
 		{
@@ -779,49 +781,7 @@ var checkinput = () => {//if input tags are focused, turn off key events
   	else
     	return false;
 };
-/*
-var moveright = () => {
-	var x0 = $('#quarter2').position().left;
-	var x1 = $('#sixty-fourth').position().left;
-	var x2 = $('#thirty-second').position().left;
-	var x3 = $('#sixteenth').position().left;
-	var x4 = $('#eighth').position().left;
-	var x5 = $('#quarter').position().left;
-	var x6 = $('#half').position().left;
-	var x7 = $('#whole').position().left;
-	var x8 = $('#breve').position().left;
-	$('#quarter2').css('left', x1);
-	$('#sixty-fourth').css('left', x2);
-	$('#thirty-second').css('left', x3);
-	$('#sixteenth').css('left', x4);
-	$('#eighth').css('left', x5);
-	$('#quarter').css('left', x6);
-	$('#half').css('left', x7);
-	$('#whole').css('left', x8);
-	$('#breve').css('left', x0);
-}
 
-var moveleft = () => {
-	var x0 = $('#quarter2').position().left;
-  	var x1 = $('#sixty-fourth').position().left;
-  	var x2 = $('#thirty-second').position().left;
-  	var x3 = $('#sixteenth').position().left;
-  	var x4 = $('#eighth').position().left;
-  	var x5 = $('#quarter').position().left;
-  	var x6 = $('#half').position().left;
-  	var x7 = $('#whole').position().left;
-  	var x8 = $('#breve').position().left;
-  	$('#quarter2').css('left', x8);
-  	$('#sixty-fourth').css('left', x0);
-  	$('#thirty-second').css('left', x1);
-  	$('#sixteenth').css('left', x2);
-  	$('#eighth').css('left', x3);
-  	$('#quarter').css('left', x4);
-  	$('#half').css('left', x5);
-  	$('#whole').css('left', x6);
-  	$('#breve').css('left', x7);
-}
-*/
 var key = () => { // only keypress can tell if "shift" is pressed at the same time
   	if(checkinput()) return;
   	if(!Edit) return;
@@ -1164,8 +1124,8 @@ $("#share").click(function(){
 $(document).ready(function(){
 	MSOE.urlload();
 	MSOE.print();
+	$('#share').hide();
 	document.onkeypress=key;
  	document.onkeydown=move;
-  document.onkeyup=chord;
-  $("#showpages").hide();
+  	document.onkeyup=chord;
 });
