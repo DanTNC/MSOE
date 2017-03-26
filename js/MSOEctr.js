@@ -13,7 +13,22 @@ function msoe () {
 	var clef=[];//clef of voices
   	var page=[];
 
-	var actions=[];//record the order of actions for the "undo" command
+	this.actions=[];//record the order of actions for the "undo" command
+	
+	this.undo = ()=>{
+		var Act = this.actions.pop();
+		if(!Act) return;
+		switch(Act.inst){
+			case 0://insert <-> delete
+				break;
+			case 1://delete <-> insert
+				abcstr=abcstr.substring(0,Act.param1)+Act.param2+abcstr.substring(Act.param1);
+				CrtPos=Act.param1;
+				break;
+			default:
+				break;
+		}
+	}
 
 		clef[0]="treble";//default value
 	this.AddVoice = () => {
@@ -719,12 +734,17 @@ function msoe () {
 			if(abcstr[CrtPos-1]!="\n"){//deleting notes
 				var DelEnd=mvpos(1);//delete end
 				var Latter="";
+				var Content="";
 				if(DelEnd!=CrtPos){//if not the last note
 					if(abcstr[DelEnd-1]=="\n")//if on the position before a "\n", keep "\n" in Latter
 						DelEnd--;
 					Latter=abcstr.substring(DelEnd);
+					Content=abcstr.substring(CrtPos,DelEnd);
+				}else{
+					Content=abcstr.substring(CrtPos);
 				}
 				abcstr=abcstr.substring(0,CrtPos)+Latter;
+				this.actions.push({inst:1,param1:CrtPos,param2:Content});
 				CrtPos=mvpos(0);
 			}else{//deleting "\n"
 				var NxtPos=mvpos(0);//next position
@@ -1016,6 +1036,10 @@ var key = () => { // only keypress can tell if "shift" is pressed at the same ti
 			event_ok = true;
 			break;
   // ----------Tie and Untie-----------
+		case 26://"ctrl+z" undo
+			MSOE.undo();
+			event_ok = true;
+			break;
     	default:
 	}
 	console.log(event.keyCode);
