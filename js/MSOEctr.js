@@ -20,6 +20,20 @@ function msoe () {
 		if(!Act) return;
 		switch(Act.inst){
 			case 0://insert <-> delete
+			/*
+			case 0:// reverse is delete
+                var Delen = true;// delete enable
+                for(var i = 0, len = this.param2.length; i < len; i++){
+                    if(Obj.AbcStr[this.param1+i]!=this.param2[i]){
+                        Delen = false;
+                        console.log("something's wrong with content");
+                        return
+                    }
+                }
+                if(Delen){
+                    Obj.AbcStr = Obj.AbcStr.substring(0,this.param1)+Obj.AbcStr.substring(this.param1+this.param2.length);
+                }
+			*/
 				break;
 			case 1://delete <-> insert
 				abcstr=abcstr.substring(0,Act.param1)+Act.param2+abcstr.substring(Act.param1);
